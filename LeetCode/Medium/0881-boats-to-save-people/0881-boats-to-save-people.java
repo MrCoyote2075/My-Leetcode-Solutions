@@ -7,11 +7,8 @@ class Solution {
 
         int ans = 0;
         while (l < r) {
-            if (arr[l] + arr[r] <= x) {
+            if (arr[l] + arr[r--] <= x)
                 l++;
-                r--;
-            } else
-                r--;
 
             ans++;
         }
