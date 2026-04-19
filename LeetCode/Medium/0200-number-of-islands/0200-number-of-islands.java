@@ -26,8 +26,8 @@ class Solution {
         count--;
     }
 
-    public static int[] dir = {0, -1};
-    public static int[] dic = {-1, 0};
+    public static int[] dir = {0, 1};
+    public static int[] dic = {1, 0};
 
     public void merge (int i, int j, char[][] grid) {
         count++;
