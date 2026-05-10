@@ -68,22 +68,25 @@ class Solution {
         for (int i = 0; i < n; i++)
             grp.add(new ArrayList<>());
 
-        int left = (int) 0, right = (int) 1e9;
+        int left = (int) 1e9, right = (int) -1e9;
         for (int[] ed : edges) {
             int u = ed[0];
             int v = ed[1];
             int w = ed[2];
 
-            // left = Math.min(left, w);
-            // right = Math.max(right, w);
+            left = Math.min(left, w);
+            right = Math.max(right, w);
 
             grp.get(u).add(new int[] { v, w });
             grp.get(v).add(new int[] { u, w });
         }
 
+        if (left == right)
+            return 0;
+
         vis = new boolean[n];
         int ans = -1;
-        // left--; right++;
+
         // System.out.println(left + " " + right);
 
         while (left <= right) {
