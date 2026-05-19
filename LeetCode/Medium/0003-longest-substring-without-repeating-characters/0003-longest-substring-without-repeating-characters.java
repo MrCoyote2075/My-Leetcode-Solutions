@@ -1,19 +1,23 @@
 class Solution {
+    // public final int MIN = (int) -1e9;
+
     public int lengthOfLongestSubstring(String s) {
-        
-        int l=0;
-        int longSub=0;
-        HashSet<Character> set=new HashSet<>();
-        for(int r=0; r<s.length(); r++){
-            char c=s.charAt(r);
-            
-            while(set.contains(c)){
-                set.remove(s.charAt(l));
-                l++;
+        int n = s.length();
+        boolean[] vis = new boolean[256];
+
+        int ans = 0;
+        for (int i = 0, j = 0 ; j < n ; j++) {
+            int ind = s.charAt(j);
+
+            while (vis[ind]) {
+                vis[s.charAt(i)] = false;
+                i++;
             }
-            set.add(c);
-            longSub=Math.max(longSub, r-l+1);
+
+            vis[ind] = true;
+            ans = Math.max(j - i + 1, ans);
         }
-        return longSub;
+
+        return ans;
     }
 }
