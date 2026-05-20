@@ -3,7 +3,7 @@ class Solution {
     public int[] dp;
     public int MAX = (int) 1e9;
 
-    public int rec (int lev, int[] nums) {
+    public int rec(int lev, int[] nums) {
 
         if (lev == n - 1)
             return 0;
@@ -13,19 +13,38 @@ class Solution {
 
         int ans = MAX;
 
-        for (int i = 1; i <= nums[lev] ; i++)
+        for (int i = 1; i <= nums[lev]; i++)
             if (lev + i < n)
-                ans = Math.min(ans, rec (lev + i, nums) + 1);
+                ans = Math.min(ans, rec(lev + i, nums) + 1);
 
         return dp[lev] = ans;
+    }
+
+    public int iter(int[] nums) {
+
+        for (int lev = n - 1; lev >= 0; lev--) {
+            if (lev == n - 1)
+                continue;
+
+            int ans = MAX;
+
+            for (int i = 1; i <= nums[lev]; i++)
+                if (lev + i < n)
+                    ans = Math.min(ans, dp[lev + i] + 1);
+
+            dp[lev] = ans;
+        }
+
+        return dp[0];
     }
 
     public int jump(int[] nums) {
         n = nums.length;
         dp = new int[n];
 
-        Arrays.fill(dp, -1);
+        // Arrays.fill(dp, -1);
 
-        return rec(0, nums);
+        // return rec(0, nums);
+        return iter(nums);
     }
 }
