@@ -28,6 +28,9 @@ class Solution {
             int d = cur[0];
             int u = cur[1];
 
+            if (dist[u] > d)
+                continue;
+
             for (int[] ed : grp.get(u)) {
                 int v = ed[0];
                 int w = ed[1];
