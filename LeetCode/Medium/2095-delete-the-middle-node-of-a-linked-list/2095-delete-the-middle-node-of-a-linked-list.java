@@ -3,17 +3,15 @@ class Solution {
         if (head.next == null)
             return null;
             
-        ListNode fs = head;
+        ListNode fs = head.next.next;
         ListNode sl = head;
-        ListNode prev = head;
 
         while (fs != null && fs.next != null) {
-            prev = sl;
             sl = sl.next;
             fs = fs.next.next;
         }
 
-        prev.next = sl.next;
+        sl.next = sl.next.next;
 
         return head;
     }
